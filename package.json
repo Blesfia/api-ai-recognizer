@@ -1,0 +1,31 @@
+{
+  "name": "api-ai-recognizer",
+  "version": "1.0.0",
+  "description": "Api.ai Recognizer to BotFramework implement the structure like LUIS Recognizer",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blesfia/api-ai-recognizer.git"
+  },
+  "keywords": [
+    "botbuilder",
+    "apiai"
+  ],
+  "author": "Jesús David Sánchez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Blesfia/api-ai-recognizer/issues"
+  },
+  "homepage": "https://github.com/Blesfia/api-ai-recognizer#readme",
+  "dependencies": {
+    "botbuilder": "^3.9.0",
+    "apiai": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.24",
+    "typescript": "^2.4.2"
+  }
+}
