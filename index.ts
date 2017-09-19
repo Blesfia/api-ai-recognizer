@@ -19,7 +19,7 @@ export class ApiAiRecognizer extends IntentRecognizer {
                 resolve(response);
             });
             request.on('error', function(error) {
-                console.log(error);
+                console.error(error);
                 reject(error);
             });
             request.end();
@@ -30,7 +30,7 @@ export class ApiAiRecognizer extends IntentRecognizer {
         const result = { score: 0.0, intent: null, entities: [] };
         if (context && context.message && context.message.text) {
             const utterance = context.message.text;
-            this.makeRequest(utterance, '1').then( (data) => {
+            this.makeRequest(utterance, context.message.address.user.id + '|' + context.message.address.channelId).then( (data) => {
                 result.intent = data.result.metadata.intentName;
                 console.log(data.result.parameters);
                 // tslint:disable-next-line:forin
