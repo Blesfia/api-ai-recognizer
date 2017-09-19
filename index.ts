@@ -47,52 +47,24 @@ export class ApiAiRecognizer extends IntentRecognizer {
         }
     }
 
-    static recognize(utterance: string, modelUrl: string, callback: (err: Error, intents?: IIntent[], entities?: IEntity[]) => void) {
-        console.log('recognize', utterance, modelUrl);
-        /*try {
-            var uri = url.parse(modelUrl, true);
-            uri.query['q'] = utterance || '';
-            if (uri.search) {
-                delete uri.search;
+    static recognize(utterance: string, modelUrl: string, secretToken, callback: (err: Error, intents?: IIntent[], entities?: IEntity[]) => void) {
+        const request = ApiAi(secretToken).textRequest(utterance, {
+            sessionId: '-1'
+        });
+        request.on('response', function(response) {
+            const result = { score: 0.0, intents: [], entities: [] };
+            result.intents.push(response.result.metadata.intentName);
+            // tslint:disable-next-line:forin
+            for (const parameter in response.result.parameters) {
+                result.entities.push({type: parameter, entity:  response.result.parameters[parameter] } as IEntity);
             }
-            request.get(url.format(uri), function (err, res, body) {
-                var result;
-                try {
-                    if (res && res.statusCode === 200) {
-                        result = JSON.parse(body);
-                        result.intents = result.intents || [];
-                        result.entities = result.entities || [];
-                        result.compositeEntities = result.compositeEntities || [];
-                        if (result.topScoringIntent && result.intents.length == 0) {
-                            result.intents.push(result.topScoringIntent);
-                        }
-                        if (result.intents.length == 1 && typeof result.intents[0].score !== 'number') {
-                            result.intents[0].score = 1.0;
-                        }
-                    }
-                    else {
-                        err = new Error(body);
-                    }
-                }
-                catch (e) {
-                    err = e;
-                }
-                try {
-                    if (!err) {
-                        callback(null, result.intents, result.entities, result.compositeEntities);
-                    }
-                    else {
-                        var m = err.toString();
-                        callback(err instanceof Error ? err : new Error(m));
-                    }
-                }
-                catch (e) {
-                    console.error(e.toString());
-                }
-            });
-        }
-        catch (err) {
-            callback(err instanceof Error ? err : new Error(err.toString()));
-        }*/
+            callback(null, result.intents, result.entities);
+        });
+
+        request.on('error', function(error) {
+            console.error(error);
+            callback(error, null);
+        });
+        request.end();
     }
 }
