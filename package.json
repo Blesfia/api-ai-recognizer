@@ -1,5 +1,5 @@
 {
-  "name": "api-ai-recognizer",
+  "name": "apiai-recognizer-botbuilder",
   "version": "1.0.0",
   "description": "Api.ai Recognizer to BotFramework implement the structure like LUIS Recognizer",
   "main": "dist/index.js",
@@ -14,7 +14,8 @@
   },
   "keywords": [
     "botbuilder",
-    "apiai"
+    "apiai",
+    "recognizer"
   ],
   "author": "Jesús David Sánchez",
   "license": "ISC",
