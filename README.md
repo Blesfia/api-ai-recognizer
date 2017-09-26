@@ -6,7 +6,7 @@ This library allows the use of api.ai on botbuilder through a recognizer just li
 
 ### Typescript
 ```typescript
-import { ApiAiRecognizer } from 'api-ai-recognizer';
+import { ApiAiRecognizer } from 'apiai-recognizer-botbuilder';
 const bot = new UniversalBot(connector);
 const TOKEN_APIAI = 'insert here the token of api ai';
 bot.recognizer(new ApiAiRecognizer(TOKEN_APIAI));
