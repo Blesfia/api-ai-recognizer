@@ -2,9 +2,11 @@
   "name": "api-ai-recognizer",
   "version": "1.0.0",
   "description": "Api.ai Recognizer to BotFramework implement the structure like LUIS Recognizer",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "test": "npm run lint && npm run tsc"
   },
   "repository": {
     "type": "git",
@@ -21,11 +23,13 @@
   },
   "homepage": "https://github.com/Blesfia/api-ai-recognizer#readme",
   "dependencies": {
-    "botbuilder": "^3.9.0",
-    "apiai": "^4.0.3"
+    "apiai": "^4.0.3",
+    "botbuilder": "^3.9.0"
   },
   "devDependencies": {
+    "@types/mocha": "^2.2.43",
     "@types/node": "^8.0.24",
+    "tslint": "^5.7.0",
     "typescript": "^2.4.2"
   }
 }
