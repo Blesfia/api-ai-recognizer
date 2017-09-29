@@ -40,7 +40,8 @@ export class ApiAiRecognizer extends IntentRecognizer {
     const result = { score: 0.0, intent: null, entities: [], data: {} };
     if (context && context.message && context.message.text) {
       const utterance = context.message.text;
-      this.makeRequest(utterance, `${context.message.address.user.id}|${context.message.address.channelId}`)
+      this.makeRequest(utterance,
+                      (`${context.message.address.user.id}|${context.message.address.channelId}`).substring(0, 35))
         .then((data) => {
           result.intent = data.result.metadata.intentName;
           result.data = data;
