@@ -30,9 +30,9 @@ export class ApiAiRecognizer extends IntentRecognizer {
   }
 
   private app;
-  constructor(private secretToken: string) {
+  constructor(private secretToken: string, private language = 'en') {
     super();
-    this.app = ApiAi(secretToken);
+    this.app = ApiAi(secretToken, {language});
   }
 
   /** Implements the actual recognition logic. */
