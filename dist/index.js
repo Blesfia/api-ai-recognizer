@@ -3,10 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ApiAi = require("apiai");
 const botbuilder_1 = require("botbuilder");
 class ApiAiRecognizer extends botbuilder_1.IntentRecognizer {
-    constructor(secretToken) {
+    constructor(secretToken, language = 'en') {
         super();
         this.secretToken = secretToken;
-        this.app = ApiAi(secretToken);
+        this.language = language;
+        this.app = ApiAi(secretToken, { language });
     }
     static recognize(utterance, modelUrl, secretToken, callback) {
         const request = ApiAi(secretToken).textRequest(utterance, {
